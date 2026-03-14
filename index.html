@@ -1443,38 +1443,56 @@ window.addEventListener('resize',()=>{if(soundPlaying)resizeWave();});
 </script>
 <script src="https://cdn.jsdelivr.net/npm/counterapi/dist/counter.browser.min.js"></script>
 <script>
-// Visitor counter via CounterAPI (counterapi.dev)
+// Visitor counter via CounterAPI V2 (counterapi.dev) with auth
 document.addEventListener('DOMContentLoaded', function() {
   const el = document.getElementById('visitor-count');
 
-  // Try the library first
+  // V2 API with access token
   function tryLibrary() {
     try {
-      const ctr = new Counter({ workspace: 'piday2026-kjrlabs' });
+      const ctr = new Counter({
+        workspace: 'piday2026-kjrlabs',
+        accessToken: 'ut_Eo2wvNXVxbCUupDyUIy8ADDM4KLtU8ZsVDTGq3gy'
+      });
       ctr.up('visitors')
         .then(function(result) {
           if (result && result.value != null) {
             el.textContent = result.value.toLocaleString();
           } else {
-            tryRawApi();
+            tryRawV2();
           }
         })
-        .catch(function() { tryRawApi(); });
-    } catch(e) { tryRawApi(); }
+        .catch(function() { tryRawV2(); });
+    } catch(e) { tryRawV2(); }
   }
 
-  // Fallback: raw REST API call
-  function tryRawApi() {
+  // Fallback: raw V2 REST API
+  function tryRawV2() {
+    fetch('https://api.counterapi.dev/v2/piday2026-kjrlabs/visitors/up', {
+      method: 'GET',
+      headers: { 'Authorization': 'Bearer ut_Eo2wvNXVxbCUupDyUIy8ADDM4KLtU8ZsVDTGq3gy' }
+    })
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        if (data && data.value != null) {
+          el.textContent = data.value.toLocaleString();
+        } else if (data && data.count != null) {
+          el.textContent = data.count.toLocaleString();
+        } else {
+          tryRawV1();
+        }
+      })
+      .catch(function() { tryRawV1(); });
+  }
+
+  // Last fallback: V1 API (no auth needed)
+  function tryRawV1() {
     fetch('https://api.counterapi.dev/v1/piday2026-kjrlabs/visitors/up')
       .then(function(r) { return r.json(); })
       .then(function(data) {
-        if (data && data.count != null) {
-          el.textContent = data.count.toLocaleString();
-        } else if (data && data.value != null) {
-          el.textContent = data.value.toLocaleString();
-        } else {
-          el.textContent = '~';
-        }
+        if (data && data.count != null) el.textContent = data.count.toLocaleString();
+        else if (data && data.value != null) el.textContent = data.value.toLocaleString();
+        else el.textContent = '~';
       })
       .catch(function() { el.textContent = '~'; });
   }
