@@ -3,8 +3,52 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pi Day 2026 — Celebrate the Infinite!</title>
-<meta name="description" content="Celebrate Pi Day 2026! Test your memory, find your birthday in pi, listen to pi as music, and see pi as pixel art.">
+<title>Pi Day 2026 — Celebrate March 14 with 6 Interactive Pi Activities</title>
+<meta name="description" content="Happy Pi Day 2026! Test how many digits of pi you can remember, find your birthday hidden in pi, hear pi as music, create pi pixel art, and explore 100,000 digits. Free, fun, no signup.">
+<meta name="keywords" content="Pi Day 2026, Pi Day, March 14, 3.14, pi digits, pi memory game, birthday in pi, pi music, pi pixel art, pi facts, pi day activities, celebrate pi day, math games, pi challenge, interactive pi">
+<meta name="author" content="KJR Labs">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://piday.kjrlabs.in/">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://piday.kjrlabs.in/">
+<meta property="og:title" content="Pi Day 2026 — 6 Fun Ways to Celebrate Pi">
+<meta property="og:description" content="How many digits of pi can you remember? Find your birthday in pi. Hear pi as music. See pi as pixel art. Celebrate March 14, 2026!">
+<meta property="og:image" content="https://piday.kjrlabs.in/og-image.png">
+<meta property="og:site_name" content="Pi Day 2026 by KJR Labs">
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Pi Day 2026 — 6 Fun Ways to Celebrate Pi">
+<meta name="twitter:description" content="Memory challenge, birthday finder, pi music, pixel art, facts & a million digit explorer. Happy 3.14!">
+<meta name="twitter:image" content="https://piday.kjrlabs.in/og-image.png">
+
+<!-- Favicon: inline SVG pi symbol -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='32' fill='%23FF6B6B'/%3E%3Ctext x='32' y='46' text-anchor='middle' font-family='serif' font-size='42' font-style='italic' fill='white'%3E%CF%80%3C/text%3E%3C/svg%3E">
+
+<!-- Structured Data / JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "Pi Day 2026 — Celebrate the Infinite",
+  "description": "Six interactive activities to celebrate Pi Day 2026: memory challenge, birthday finder, pi soundscape, pixel art, fun facts, and a 100,000 digit explorer.",
+  "url": "https://piday.kjrlabs.in/",
+  "datePublished": "2026-03-14",
+  "author": {
+    "@type": "Organization",
+    "name": "KJR Labs",
+    "url": "https://kjrlabs.in"
+  },
+  "about": {
+    "@type": "Thing",
+    "name": "Pi (mathematical constant)",
+    "sameAs": "https://en.wikipedia.org/wiki/Pi"
+  },
+  "keywords": "Pi Day, March 14, pi digits, math games, pi memory, birthday in pi"
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Fira+Code:wght@400;500;600&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
 <style>
@@ -664,6 +708,14 @@ body {
 }
 .footer a { color: var(--coral); text-decoration: none; }
 .footer a:hover { text-decoration: underline; }
+.footer-brand {
+  font-size: 18px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
 
 .visitor-badge {
   display: inline-flex;
@@ -985,7 +1037,15 @@ body {
 </div>
 
 <footer class="footer">
-  <p>Happy Pi Day 2026 &mdash; baked with love and irrational enthusiasm</p>
+  <div class="footer-brand">
+    <svg width="28" height="28" viewBox="0 0 64 64" style="vertical-align:middle;margin-right:6px;">
+      <circle cx="32" cy="32" r="32" fill="#FF6B6B"/>
+      <text x="32" y="46" text-anchor="middle" font-family="serif" font-size="42" font-style="italic" fill="white">π</text>
+    </svg>
+    <span>Happy Pi Day 2026</span>
+  </div>
+  <p style="margin-top:12px;">Made by <a href="https://kjrlabs.in" target="_blank" rel="noopener">KJR Labs</a></p>
+  <p style="margin-top:6px;">Love quirky web experiments? Check out <a href="https://wastemytime.fun" target="_blank" rel="noopener">wastemytime.fun</a></p>
   <div class="visitor-badge">
     <div class="visitor-dot"></div>
     <span><span class="visitor-count" id="visitor-count">...</span> slices served</span>
@@ -1096,7 +1156,10 @@ function generateShareCard(score) {
 
   ctx.font = '700 13px "Baloo 2", sans-serif';
   ctx.fillStyle = '#FF6B6B';
-  ctx.fillText('wastemytime.fun/pi', 50, 355);
+  ctx.fillText('piday.kjrlabs.in', 50, 345);
+  ctx.fillStyle = '#636E72';
+  ctx.font = '500 11px "Baloo 2", sans-serif';
+  ctx.fillText('by KJR Labs  ·  wastemytime.fun', 50, 365);
 
   document.getElementById('share-overlay').classList.add('active');
 }
@@ -1380,24 +1443,44 @@ window.addEventListener('resize',()=>{if(soundPlaying)resizeWave();});
 </script>
 <script src="https://cdn.jsdelivr.net/npm/counterapi/dist/counter.browser.min.js"></script>
 <script>
-// Visitor counter via CounterAPI
-(function() {
-  try {
-    const ctr = new Counter({ workspace: 'piday2026-kshitij' });
-    ctr.up('visitors')
-      .then(result => {
-        const el = document.getElementById('visitor-count');
-        if (el && result && result.value != null) {
-          el.textContent = result.value.toLocaleString();
+// Visitor counter via CounterAPI (counterapi.dev)
+document.addEventListener('DOMContentLoaded', function() {
+  const el = document.getElementById('visitor-count');
+
+  // Try the library first
+  function tryLibrary() {
+    try {
+      const ctr = new Counter({ workspace: 'piday2026-kjrlabs' });
+      ctr.up('visitors')
+        .then(function(result) {
+          if (result && result.value != null) {
+            el.textContent = result.value.toLocaleString();
+          } else {
+            tryRawApi();
+          }
+        })
+        .catch(function() { tryRawApi(); });
+    } catch(e) { tryRawApi(); }
+  }
+
+  // Fallback: raw REST API call
+  function tryRawApi() {
+    fetch('https://api.counterapi.dev/v1/piday2026-kjrlabs/visitors/up')
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        if (data && data.count != null) {
+          el.textContent = data.count.toLocaleString();
+        } else if (data && data.value != null) {
+          el.textContent = data.value.toLocaleString();
+        } else {
+          el.textContent = '~';
         }
       })
-      .catch(() => {
-        document.getElementById('visitor-count').textContent = '~';
-      });
-  } catch(e) {
-    document.getElementById('visitor-count').textContent = '~';
+      .catch(function() { el.textContent = '~'; });
   }
-})();
+
+  tryLibrary();
+});
 </script>
 </body>
 </html>
